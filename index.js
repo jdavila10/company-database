@@ -19,7 +19,7 @@ connection.connect((err) => {
     if (err) throw err;
     mainMenu();
 });
-
+//Main menu Inquirer
 function mainMenu() {
     inquirer.prompt([
         {
@@ -74,12 +74,14 @@ function mainMenu() {
                 break;
 
             case "Exit":
+                //Exit out of the app
                 console.log("Goodbye");                
                 connection.end();
         };
     });
 };
 
+//View All Employees Function
 function viewAllEmployees() {
     connection.query("SELECT * FROM employee", (err, result) => {
         if (err) throw err;
@@ -88,6 +90,7 @@ function viewAllEmployees() {
     });
 };
 
+//View Employees by Department
 function viewByDepartment() {
     connection.query("SELECT * FROM department", (err, result) => {
         if (err) throw err;
@@ -120,6 +123,7 @@ function viewByDepartment() {
     });
 };
 
+//View Employees by Manager
 function vieByManager() {
 
     connection.query("SELECT * FROM employee WHERE manager_id IS NULL", (err, result) => {
@@ -152,6 +156,7 @@ function vieByManager() {
     });
 };
 
+//Add Employee
 function addEmployee() {
     connection.query("SELECT * FROM employee WHERE manager_id IS NULL", (err, result) => {
         if (err) throw err;
@@ -220,7 +225,7 @@ function addEmployee() {
     });
 };
 
-
+// Add a Department
 function addDepartment() {
     inquirer.prompt([
         {
@@ -250,7 +255,7 @@ function addDepartment() {
 };
 
 
-
+//Remove Employee
 function removeEmployee() {
     let employees = [];
     let employeeListArray;
@@ -290,6 +295,7 @@ function removeEmployee() {
     });
 };
 
+//Update Employee's role
 function updateEmployeeRole() {
     employees = [];
     roles = [];
@@ -343,7 +349,7 @@ function updateEmployeeRole() {
     });
 };
 
-
+//Update Employee's manager
 function updateEmployeeManager() {
     employees = [];
     roles = [];
